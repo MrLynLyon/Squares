@@ -1,10 +1,16 @@
 import Square from "./Squares.js";
 
+/**
+ * Engine.
+ */
 export default class Engine {
     context: CanvasRenderingContext2D | null = null;
     frame: number = 0;
     squareList: Square[] = new Array<Square>(100);
 
+    /**
+     * Constructor.
+     */
     public constructor() {
         var canvas = document.createElement("canvas");
         canvas.width = window.innerWidth;
@@ -23,17 +29,26 @@ export default class Engine {
         }
     }
 
+    /**
+     * Loop.
+     */
     public loop(): void {
         this.manage();
         this.render();
         this.frame++;
     }
 
+    /**
+     * Compute the frame.
+     */
     public manage(): void {
         for (let square of this.squareList)
             square.manage();
     }
 
+    /**
+     * Display the frame.
+     */
     public render(): void {
         if (this.context === null) return;
         
@@ -43,6 +58,14 @@ export default class Engine {
             square.render(this.context);
     }
 
+    /**
+     * Clear the screen.
+     * @param context Rendering context.
+     * @param r Red value.
+     * @param g Green value.
+     * @param b Blue value.
+     * @param a Alpha value.
+     */
     public clear(context: CanvasRenderingContext2D, r: number, g:number, b:number, a:number): void {
         context.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", "+ a + ")";
         context.fillRect(0, 0, window.innerWidth, window.innerHeight);

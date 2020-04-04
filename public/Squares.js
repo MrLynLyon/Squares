@@ -1,4 +1,10 @@
+/**
+ * Represent a square.
+ */
 export default class Square {
+    /**
+     * Constructor.
+     */
     constructor() {
         this.x = Math.round(Math.random() * (window.innerWidth - 50 - 1));
         this.y = Math.round(Math.random() * (window.innerHeight - 50 - 1));
@@ -11,6 +17,9 @@ export default class Square {
         this.colorB = Math.round(Math.random() * 0xff);
         this.colorA = Math.random();
     }
+    /**
+     * Compute the square's position.
+     */
     manage() {
         if (this.x < 0 || this.x > window.innerWidth - this.width - 1)
             this.incX *= -1;
@@ -19,6 +28,10 @@ export default class Square {
         this.x += this.incX;
         this.y += this.incY;
     }
+    /**
+     * Render the square.
+     * @param context Rendering context.
+     */
     render(context) {
         context.fillStyle = "rgba(" + this.colorR + ", " + this.colorG + ", " + this.colorB + ", " + this.colorA + ")";
         context.fillRect(this.x, this.y, this.width, this.height);
